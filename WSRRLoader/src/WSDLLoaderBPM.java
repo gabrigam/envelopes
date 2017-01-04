@@ -60,6 +60,12 @@ public class WSDLLoaderBPM {
 		//26102016 modifica al mqmanual per portare il nome coda in sm63_requestQName
 		//-->Fork da IXPG0
 		//01122016 inseriti nuovi campi come da richiesta ISP x aderire alla versione 6.5.1 tolte poi scrittura cpy_cobol (07/12/16)
+		//17122016 inseriti campi per reps0 e altri campi per aderire alle nuove specifiche del modello (x i cambiamenti vedere quanto fatto per reps0)
+        //20122916 inseritocampo SOPEN/SCOPEN gep63_SOPEN_USO_SICUREZZA e gep63_SCOPEN_USO_SICUREZZA e i relativi per SHOST/SCHOST
+		//040107  tolti i campi SOPEN/SCOPEN gep63_SOPEN_USO_SICUREZZA e gep63_SCOPEN_USO_SICUREZZA SCHOST/SHOST
+		//040107 nella posizione dove venivano valoirizzati : gep63_SOPEN_USO_SICUREZZA e gep63_SCOPEN_USO_SICUREZZA ora
+		//       ora inserisco i nuovi campi: gep63_SOPEN_EAR_SERVIZIO e gep63_SCOPEN_EAR_SERVIZIO
+		//040117 all'enpoint viene passato il campo sicurezza inserito nella proprieta' : sm63_USO_SICUREZZA
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -156,6 +162,7 @@ public class WSDLLoaderBPM {
     private static final String OWL_CICS_ENDPOINT="http://www.ibm.com/xmlns/prod/serviceregistry/v6r3/ServiceModel#CICSServiceEndpoint";
     private static final String OWL_MQ_ENDPOINT="http://www.ibm.com/xmlns/prod/serviceregistry/v6r3/ServiceModel#MQServiceEndpoint";
     private static final String OWL_MQ_ENDPOINT_MANUAL="http://www.ibm.com/xmlns/prod/serviceregistry/v6r3/ServiceModel#ManualMQEndpoint";
+    private static final String OWL_SERVICEPROXY_ENDPOINT="http://www.ibm.com/xmlns/prod/serviceregistry/v6r3/ServiceModel#ProxyServiceEndpoint";
     
     private static final String OWL_ENVIRONMENT_STATE="http://www.ibm.com/xmlns/prod/serviceregistry/6/1/GovernanceProfileTaxonomy#";
     private static final String OWL_INTERNAL_EXTERNAL_STATE="http://www.ibm.com/xmlns/prod/serviceregistry/8/0/visibilitytaxonomy#";
@@ -1009,7 +1016,7 @@ public class WSDLLoaderBPM {
     
     
     
-    public  String createServiceSCOPENServiceVersionXMLDAta(TWList data,String sdlBsrUri,String organizationBsrUri) {
+    public  String createServiceSCOPENServiceVersionXMLDAta(TWList data,String sdlBsrUri,String organizationBsrUri,String matricola) {
     	
  
         String output=null;
@@ -1069,14 +1076,49 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_PID_PROCESSO_GOV", (String) data.getArrayData(11))); 
             
            	//aggiunta 05102016
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_ABILITAZ_INFRASTR", (String) data.getArrayData(12))); 
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_ABILITAZ_INFRASTR", (String) data.getArrayData(12)));
+            
+            //17122016 reps0 fields
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPO_SERVIZIO", (String)data.getArrayData(13)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_FLG_CTRL_TIPO_SERVIZIO", (String)data.getArrayData(14)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_UTILIZ_PIU_BAN_CLONI", (String)data.getArrayData(15)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DISP_SERV", (String)data.getArrayData(16)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_VINCOLI_RIUSO", (String)data.getArrayData(17)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_INFO_COSTO", (String)data.getArrayData(18)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_PIATT_EROG", (String)data.getArrayData(19)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DATA_RITIRO_SERV", (String)data.getArrayData(20)));
+                       
+            //201216 +
+            //040117 -
+            //propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_USO_SICUREZZA", (String)data.getArrayData(21)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_EAR_SERVIZIO", (String)data.getArrayData(21)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_AMBITO_IMPLEMENTAZIONE", (String)data.getArrayData(22)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_LINK_SIN_APPS_EST", (String)data.getArrayData(23)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_AMBIENTE_FISICO", (String)data.getArrayData(24)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_REPS0", (String)data.getArrayData(25)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_RIF_CHIAMANTI_EST", (String)data.getArrayData(26)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_RIF_CHIAMANTI_INT", (String)data.getArrayData(27)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_DOWNTIME_PIANIFICATO", (String)data.getArrayData(28)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_STATO_ATTUALE_FUNZ", (String)data.getArrayData(29)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_DIM_MAX_MSG", (String)data.getArrayData(30)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_DIM_MIN_MSG", (String)data.getArrayData(31)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_VOLUME_GIORN", (String)data.getArrayData(32)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_NUM_CHIAMATE_PICCO", (String)data.getArrayData(33)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_FLG_CONTIENE_ATTACHMENT", (String)data.getArrayData(34)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCOPEN_ATTACHMENT_TYPE", (String)data.getArrayData(35)));     
             
             propertiesElement.appendChild(createPropertyElement(document, "gep63_ATTIVATO_IN_APPL", EMPTY_STRING));  
             propertiesElement.appendChild(createPropertyElement(document, "gep63_ATTIVATO_IN_SYST", EMPTY_STRING));
             
-          //costruisco il primary type dell'oggetto
             
+            //17122016
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DATA_PUBBL_CREAZ_SERV", EMPTY_STRING));  
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_PUBBLICATORE_CREAZ_SERV", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_RICH_MODIFICA", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_RICH_CREAZIONE", matricola));
             
+           //costruisco il primary type dell'oggetto
+                       
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_URI_ISP_SERVICE_VERSION+"SCOPENServiceVersion"));
             
             propertiesElement.appendChild(createPropertyElement(document, PROPERTY_ALE63_ASSET_WEB_LINK, EMPTY_STRING));
@@ -1136,7 +1178,7 @@ public class WSDLLoaderBPM {
 
         return output;
     }
-    public  String createServiceSHOSTServiceVersionXMLDAta( TWList data,String sdlBsrUri,String organizationBsrUri) {
+    public  String createServiceSHOSTServiceVersionXMLDAta( TWList data,String sdlBsrUri,String organizationBsrUri,String matricola) {
  
     	
         String output=null;
@@ -1205,9 +1247,27 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_ATTIVATO_IN_APPL", EMPTY_STRING));  
             propertiesElement.appendChild(createPropertyElement(document, "gep63_ATTIVATO_IN_SYST", EMPTY_STRING));
             
+            //17122016
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DATA_PUBBL_CREAZ_SERV", EMPTY_STRING));  
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_PUBBLICATORE_CREAZ_SERV", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_RICH_MODIFICA", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_RICH_CREAZIONE", matricola));
+            
             //01122016
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_PGM_MD_X_MPE",(String) data.getArrayData(23)));
-                
+            
+            //17122016 reps0 fields
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPO_SERVIZIO", (String)data.getArrayData(24)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_FLG_CTRL_TIPO_SERVIZIO", (String)data.getArrayData(25)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_UTILIZ_PIU_BAN_CLONI", (String)data.getArrayData(26)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DISP_SERV", (String)data.getArrayData(27)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_VINCOLI_RIUSO", (String)data.getArrayData(28)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_INFO_COSTO", (String)data.getArrayData(29)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_PIATT_EROG", (String)data.getArrayData(30)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DATA_RITIRO_SERV", (String)data.getArrayData(31)));
+            //040117 -
+            //propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_USO_SICUREZZA", (String)data.getArrayData(32)));
+                           
             //costruisco il primary type dell'oggetto
             
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_URI_ISP_SERVICE_VERSION+"SHOSTServiceVersion"));
@@ -1265,13 +1325,13 @@ public class WSDLLoaderBPM {
             		relationshipsElement.appendChild(createRelationToDocument(document,"gep63_SHOST_DFDL_OUT",null,null));
             	}
                	
-               	//copy cobol sono obbligatori e di tipo GenericDocument 
+               	//copy cobol sono obbligatori e di tipo GenericDocument (deprecato)
                	
             	now=(String) data.getArrayData(18); //cpycobolInp
             	if (now != "") {
             		//relationshipsElement.appendChild(createRelationToDocument(document,"gep63_SHOST_CPY_INP",now,"GenericDocument")); //fix type assumo Generic Document     		
             	}
-            	now=(String) data.getArrayData(19); //cpycobolOut
+            	now=(String) data.getArrayData(19); //cpycobolOut (deprecato)
                	if (now != "") { 
             		//relationshipsElement.appendChild(createRelationToDocument(document,"gep63_SHOST_CPY_OUT",now,"GenericDocument")); //fix type assumo Generic Document    		
             	}
@@ -1316,7 +1376,7 @@ public class WSDLLoaderBPM {
         System.out.println(".................................................................................................");
         return output;
     }
-    public String createServiceSCHOSTServiceVersionXMLDAta(TWList data,String sdlBsrUri,String organizationBsrUri) {
+    public String createServiceSCHOSTServiceVersionXMLDAta(TWList data,String sdlBsrUri,String organizationBsrUri,String matricola) {
 
     	
         String output=null;
@@ -1388,10 +1448,28 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_ATTIVATO_IN_APPL", EMPTY_STRING));  
             propertiesElement.appendChild(createPropertyElement(document, "gep63_ATTIVATO_IN_SYST", EMPTY_STRING)); 
             
+            //17122016
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DATA_PUBBL_CREAZ_SERV", EMPTY_STRING));  
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_PUBBLICATORE_CREAZ_SERV", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_RICH_MODIFICA", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_RICH_CREAZIONE", matricola));
+            
             //01122016
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_PGM_MD_X_MPE",(String) data.getArrayData(23)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_PGM_SERVIZIO",(String) data.getArrayData(24)));
-                
+            
+            //17122016 reps0 fields
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPO_SERVIZIO", (String)data.getArrayData(25)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_FLG_CTRL_TIPO_SERVIZIO", (String)data.getArrayData(26)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_UTILIZ_PIU_BAN_CLONI", (String)data.getArrayData(27)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DISP_SERV", (String)data.getArrayData(28)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_VINCOLI_RIUSO", (String)data.getArrayData(29)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_INFO_COSTO", (String)data.getArrayData(30)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_PIATT_EROG", (String)data.getArrayData(31)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DATA_RITIRO_SERV", (String)data.getArrayData(32)));
+            //040117 -
+            //propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_USO_SICUREZZA", (String)data.getArrayData(33)));
+                  
             //costruisco il primary type dell'oggetto  
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_URI_ISP_SERVICE_VERSION+"SCHOSTServiceVersion"));
             
@@ -1726,7 +1804,7 @@ public class WSDLLoaderBPM {
 		return (String) items.getArrayData(indice);
 	}
 
-	public String createServiceSOPENServiceVersionXMLDAta(TWList data,String sdlBsrUri,String organizationBsrUri) {
+	public String createServiceSOPENServiceVersionXMLDAta(TWList data,String sdlBsrUri,String organizationBsrUri,String matricola) {
 	
 	    String output=null;
 	
@@ -1785,10 +1863,45 @@ public class WSDLLoaderBPM {
 	        propertiesElement.appendChild(createPropertyElement(document, "gep63_PID_PROCESSO_GOV", (String) data.getArrayData(11))); 
 	        
            	//aggiunta 05102016
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_ABILITAZ_INFRASTR", (String) data.getArrayData(12))); 
-	        
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_ABILITAZ_INFRASTR", (String) data.getArrayData(12)));
+            
+            //17122016 reps0 fields
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPO_SERVIZIO", (String)data.getArrayData(13)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_FLG_CTRL_TIPO_SERVIZIO", (String)data.getArrayData(14)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_UTILIZ_PIU_BAN_CLONI", (String)data.getArrayData(15)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DISP_SERV", (String)data.getArrayData(16)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_VINCOLI_RIUSO", (String)data.getArrayData(17)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_INFO_COSTO", (String)data.getArrayData(18)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_PIATT_EROG", (String)data.getArrayData(19)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DATA_RITIRO_SERV", (String)data.getArrayData(20)));	        
+            
+            //201216 + 
+            //040116 -
+            //propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_USO_SICUREZZA", (String)data.getArrayData(21)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_EAR_SERVIZIO", (String)data.getArrayData(21)));  
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_AMBITO_IMPLEMENTAZIONE", (String)data.getArrayData(22)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_LINK_SIN_APPS_EST", (String)data.getArrayData(23)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_AMBIENTE_FISICO", (String)data.getArrayData(24)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_REPS0", (String)data.getArrayData(25)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_RIF_CHIAMANTI_EST", (String)data.getArrayData(26)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_RIF_CHIAMANTI_INT", (String)data.getArrayData(27)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_DOWNTIME_PIANIFICATO", (String)data.getArrayData(28)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_STATO_ATTUALE_FUNZ", (String)data.getArrayData(29)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_DIM_MAX_MSG", (String)data.getArrayData(30)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_DIM_MIN_MSG", (String)data.getArrayData(31)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_VOLUME_GIORN", (String)data.getArrayData(32)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_NUM_CHIAMATE_PICCO", (String)data.getArrayData(33)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_FLG_CONTIENE_ATTACHMENT", (String)data.getArrayData(34)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_ATTACHMENT_TYPE", (String)data.getArrayData(35)));     
+            
             propertiesElement.appendChild(createPropertyElement(document, "gep63_ATTIVATO_IN_APPL", EMPTY_STRING));  
             propertiesElement.appendChild(createPropertyElement(document, "gep63_ATTIVATO_IN_SYST", EMPTY_STRING));
+            
+            //17122016
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DATA_PUBBL_CREAZ_SERV", EMPTY_STRING));  
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_PUBBLICATORE_CREAZ_SERV", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_RICH_MODIFICA", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_RICH_CREAZIONE", matricola));
 
 	      //costruisco il primary type dell'oggetto
 	        
@@ -1852,8 +1965,8 @@ public class WSDLLoaderBPM {
 	    return output;
 	}
 	
-	
-	public String createRestEndpointXMLDAta(String name,String timeout,String environment,String state) {
+	//040117 all'enpoint viene passato il campo sicurezza inserito nella proprieta' : sm63_USO_SICUREZZA
+	public String createRestEndpointXMLDAta(String name,String timeout,String environment,String state,String bsrUriserviceProxy,String sicurezza) {
 		
 	    String output=null;
 	
@@ -1898,6 +2011,8 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceName", "X"));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_Timeout", timeout));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceVersion", "X"));
+            //040117
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_USO_SICUREZZA", sicurezza));
             
             
             propertiesElement.appendChild(createPropertyElement(document, "rest80_ISPHEADER_FLAG", null));
@@ -1912,6 +2027,12 @@ public class WSDLLoaderBPM {
 	        resourceElement.appendChild(relationshipsElement);
 
 	        relationshipsElement.appendChild(createRelationshipElement(document, "sm63_sourceDocument", null));
+	        
+            if ( bsrUriserviceProxy != null && bsrUriserviceProxy.length() !=0){
+            	relationshipsElement.appendChild(createRelationshipElement(document, "rest80_RESTProxy", bsrUriserviceProxy));
+            } else {
+            	relationshipsElement.appendChild(createRelationshipElement(document, "rest80_RESTProxy", null));
+            }
 
             Element classificationsElement = document.createElement(ELEMENT_CLASSIFICATIONS);
             resourceElement.appendChild(classificationsElement);
@@ -1937,7 +2058,8 @@ public class WSDLLoaderBPM {
 	    return output;
 	}
 	
-	public String createCallableEndpointXMLDAta(String name,String timeout,String environment,String state) {
+	//040117 all'enpoint viene passato il campo sicurezza inserito nella proprieta' : sm63_USO_SICUREZZA
+	public String createCallableEndpointXMLDAta(String name,String timeout,String environment,String state,String bsrUriserviceProxy,String sicurezza) {
 		
 	    String output=null;
 	
@@ -1982,11 +2104,11 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceName", "X"));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_Timeout", timeout));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceVersion", "X"));
-            
-            
+            //040117
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_USO_SICUREZZA", sicurezza));
+                       
             propertiesElement.appendChild(createPropertyElement(document, "rest80_CALLABLE_ISPHEADER_FLAG", null));
-            
-            
+                        
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_PRIMO_UTILIZZO", EMPTY_STRING));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_ULTIMO_UTILIZZO", EMPTY_STRING));
 	
@@ -1996,6 +2118,12 @@ public class WSDLLoaderBPM {
 	        resourceElement.appendChild(relationshipsElement);
 
 	        relationshipsElement.appendChild(createRelationshipElement(document, "sm63_sourceDocument", null));
+	        
+            if ( bsrUriserviceProxy != null && bsrUriserviceProxy.length() !=0){
+            	relationshipsElement.appendChild(createRelationshipElement(document, "rest80_CALLABLEProxy", bsrUriserviceProxy));
+            } else {
+            	relationshipsElement.appendChild(createRelationshipElement(document, "rest80_CALLABLEProxy", null));
+            }
 
             Element classificationsElement = document.createElement(ELEMENT_CLASSIFICATIONS);
             resourceElement.appendChild(classificationsElement);
@@ -2020,8 +2148,8 @@ public class WSDLLoaderBPM {
 	    }
 	    return output;
 	}
-	
-	public String createSoapEndpointXMLDAta(String name,String timeout,String ispheader,String environment,String state) {
+	//040117 all'enpoint viene passato il campo sicurezza inserito nella proprieta' : sm63_USO_SICUREZZA
+	public String createSoapEndpointXMLDAta(String name,String timeout,String ispheader,String environment,String state,String bsrUriserviceProxy,String sicurezza) {
 		
 	    String output=null;
 	
@@ -2065,12 +2193,16 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceName", "X"));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_Timeout", timeout));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceVersion", "X"));
+            //040117
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_USO_SICUREZZA", sicurezza));
             
             //28/07/2016
             propertiesElement.appendChild(createPropertyElement(document, "sm63_ISPHEADER_FLAG", ispheader));
             
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_PRIMO_UTILIZZO", EMPTY_STRING));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_ULTIMO_UTILIZZO", EMPTY_STRING));
+            //finto
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_SOAPProxy", EMPTY_STRING));
 	
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_SOAP_ENDPOINT));
 
@@ -2080,6 +2212,12 @@ public class WSDLLoaderBPM {
             relationshipsElement.appendChild(createRelationshipElement(document, "sm63_sourceDocument", null));
             relationshipsElement.appendChild(createRelationshipElement(document, "sm63_soapAddress", null));
             relationshipsElement.appendChild(createRelationshipElement(document, "sm63_wsdlPorts", null));
+
+            if ( bsrUriserviceProxy != null && bsrUriserviceProxy.length() !=0){
+            	relationshipsElement.appendChild(createRelationshipElement(document, "rest80_SOAPProxy", bsrUriserviceProxy));
+            } else {
+            	relationshipsElement.appendChild(createRelationshipElement(document, "rest80_SOAPProxy", null));
+            }
 
             Element classificationsElement = document.createElement(ELEMENT_CLASSIFICATIONS);
             resourceElement.appendChild(classificationsElement);
@@ -2105,7 +2243,8 @@ public class WSDLLoaderBPM {
 	    return output;
 	}
 	
-	public String createCicsEndpointXMLDAta(String name,String timeout,String stage,String environment,String state) {
+	//040117 all'enpoint viene passato il campo sicurezza inserito nella proprieta' : sm63_USO_SICUREZZA
+	public String createCicsEndpointXMLDAta(String name,String timeout,String stage,String environment,String state,String sicurezza) {
 		
 	    String output=null;
 	
@@ -2154,6 +2293,8 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_ULTIMO_UTILIZZO", EMPTY_STRING));
                        
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceVersion", "X"));
+            //040117
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_USO_SICUREZZA", sicurezza));
 	
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_CICS_ENDPOINT));
 
@@ -2185,8 +2326,8 @@ public class WSDLLoaderBPM {
 	    }
 	    return output;
 	}
-	
-	public String createMqEndpointXMLDAta(String name,String qname,int messLen,String environment,String state,String bsrURIMqManualendpoint) {
+	//040117 all'enpoint viene passato il campo sicurezza inserito nella proprieta' : sm63_USO_SICUREZZA
+	public String createMqEndpointXMLDAta(String name,String qname,int messLen,String environment,String state,String bsrURIMqManualendpoint,String sicurezza) {
 		
 	    String output=null;
 	
@@ -2251,6 +2392,8 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "sm63_Timeout", "10"));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_ID_TGT_DES", "MQPUTNBP"));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_BACKOUT_COUNT", "3"));
+            //040117
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_USO_SICUREZZA", sicurezza));
 	
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_MQ_ENDPOINT));
 
@@ -2278,7 +2421,8 @@ public class WSDLLoaderBPM {
 	    }
 	    return output;
 	}
-	public String createMqEndpointManualtXMLDAta(String name,String qname) {
+	//040117 all'enpoint viene passato il campo sicurezza inserito nella proprieta' : sm63_USO_SICUREZZA
+	public String createMqEndpointManualtXMLDAta(String name,String qname,String sicurezza) {
 		
 	    String output=null;
 	
@@ -2333,6 +2477,8 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "sm63_requestQName", qname));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_responseQName", " "));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_PGM_AREE", "XIC2RQXI"));
+            //040117
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_USO_SICUREZZA", sicurezza));
 	
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_MQ_ENDPOINT_MANUAL));
 
@@ -2598,6 +2744,104 @@ public class WSDLLoaderBPM {
         }
         System.out.println(output);
         System.out.println(".................................................................................................");
+        return output;
+    }
+    
+    //18102016
+    public  String createServiceProxyEndpointXMLDAta( TWList data,String environment) {
+ 	
+        String output=null;
+
+        try {
+            try {
+                docBuilderFactory = DocumentBuilderFactory.newInstance();
+                docBuilder = docBuilderFactory.newDocumentBuilder();
+
+                XPathFactory xPathFactory = XPathFactory.newInstance();
+                XPath xPath = xPathFactory.newXPath();
+                valueAttrExpression = xPath.compile(XPATH_EXPR_VALUE_ATTR);
+            } catch (ParserConfigurationException e) {
+                e.printStackTrace();
+                throw e;
+            } catch (XPathExpressionException e) {
+                e.printStackTrace();
+                throw e;
+            }
+            /*
+             * Now create the XML document that represents the BusinessService
+             */
+            Document document = docBuilder.newDocument();
+
+            // Resources element
+            Element resourcesElement = document.createElement(ELEMENT_RESOURCES);
+            document.appendChild(resourcesElement);
+
+            // Resource element
+            Element resourceElement = document.createElement(ELEMENT_RESOURCE);
+            resourcesElement.appendChild(resourceElement);
+
+            // Properties element
+            Element propertiesElement = document.createElement(ELEMENT_PROPERTIES);
+            resourceElement.appendChild(propertiesElement);
+
+            /*
+             * Create elements for each of the required properties on the BusinessService type, as follows:
+             * 
+             * name namespace version description primaryType ale63_assetWebLink ale63_fullDescription ale63_remoteState
+             * ale63_assetType ale63_requirementsLink ale63_ownerEmail ale63_guid ale63_communityName ale63_assetOwners
+             * gep63_consumerIdentifier gep63_versionAvailabilityDate gep63_versionTerminationDate
+             * 
+             * 
+             * 
+             */
+   
+
+            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAME, (String) data.getArrayData(0)));
+            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAMESPACE, EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.VERSION,EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.DESCRIPTION, EMPTY_STRING));
+            
+            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_SERVICEPROXY_ENDPOINT));
+            
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_ESPOSIZIONE", (String)data.getArrayData(1)));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_ESPOSTO_INTRANET", (String) data.getArrayData(2)));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_FLG_RICHIAMABILE_DA_CICS", (String)data.getArrayData(3)));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_FLG_ESPOSTO_SOCIETA_GRUPPO", (String)data.getArrayData(4)));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_FLG_ESP_CONTROPARTE_ESTERNA", (String) data.getArrayData(5)));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_FLG_CONTROPARTE_DSI", (String) data.getArrayData(6)));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_FLG_CONTROPARTE_INTERNET", (String) data.getArrayData(7)));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_SOCIETA_CHE_ESPONE_SERVIZIO", (String) data.getArrayData(8)));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_FLG_USO_DATAPOWER_DEDICATO", (String) data.getArrayData(9)));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_DATAPOWER_DEDICATO", (String) data.getArrayData(10)));       
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_NOTE_GEN_WSPROXY", (String) data.getArrayData(11)));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_NOTE", (String) data.getArrayData(12)));
+            
+            //OWL_SERVICEPROXY_ENDPOINT
+            
+            // Relationships element
+            Element relationshipsElement = document.createElement(ELEMENT_RELATIONSHIPS);
+            resourceElement.appendChild(relationshipsElement);
+            
+            Element classificationsElement = document.createElement(ELEMENT_CLASSIFICATIONS);
+            resourceElement.appendChild(classificationsElement);
+            classificationsElement.appendChild(
+            classificationsElement.appendChild(createClassificationElement(document,OWL_ENVIRONMENT_STATE + environment)));  
+
+            TransformerFactory tf = TransformerFactory.newInstance();
+            Transformer transformer1 = tf.newTransformer();
+            transformer1.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+            StringWriter writer = new StringWriter();
+            transformer1.transform(new DOMSource(document), new StreamResult(writer));
+            output = writer.getBuffer().toString().replaceAll("\n|\r", "");
+ 
+        } catch (Exception e) {
+            e.printStackTrace();
+            output=null;
+        }
+        System.out.println("SHOSTServiceVersion.............................................................................");
+        System.out.println(output);
+        System.out.println(".................................................................................................");
+        
         return output;
     }
     
