@@ -66,6 +66,8 @@ public class WSDLLoaderBPM {
 		//040107 nella posizione dove venivano valoirizzati : gep63_SOPEN_USO_SICUREZZA e gep63_SCOPEN_USO_SICUREZZA ora
 		//       ora inserisco i nuovi campi: gep63_SOPEN_EAR_SERVIZIO e gep63_SCOPEN_EAR_SERVIZIO
 		//040117 all'enpoint viene passato il campo sicurezza inserito nella proprieta' : sm63_USO_SICUREZZA
+		//040117 se interfaccia SCH passo endpoint null nella creazione SLD
+	    //060117 inserito sm63_ERRORE_GENERAZIONE_WSPROXY ="" di default su endpointproxy
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -1729,7 +1731,7 @@ public class WSDLLoaderBPM {
             element.setAttribute(ATTR_TARGET_BSRURI, targetBsrUri);
         }
         String type="";
-        if (interfacetype == null) interfacetype="REST";
+        if (interfacetype == null) interfacetype="REST"; 
         
         switch (interfacetype) {
         case "REST": type=OWL_REST_ENDPOINT;
@@ -2421,8 +2423,8 @@ public class WSDLLoaderBPM {
 	    }
 	    return output;
 	}
-	//040117 all'enpoint viene passato il campo sicurezza inserito nella proprieta' : sm63_USO_SICUREZZA
-	public String createMqEndpointManualtXMLDAta(String name,String qname,String sicurezza) {
+
+	public String createMqEndpointManualtXMLDAta(String name,String qname) {
 		
 	    String output=null;
 	
@@ -2477,8 +2479,7 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "sm63_requestQName", qname));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_responseQName", " "));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_PGM_AREE", "XIC2RQXI"));
-            //040117
-            propertiesElement.appendChild(createPropertyElement(document, "sm63_USO_SICUREZZA", sicurezza));
+
 	
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_MQ_ENDPOINT_MANUAL));
 
@@ -2567,9 +2568,12 @@ public class WSDLLoaderBPM {
     			String bsrURIDocument = (String) data.getArrayData(i);
     			 relationshipsElement.appendChild(this.createRelationshipElementEndpoint(document, interfacetype, bsrURIDocument));
     		}
+    		
+    		if (size==0) {
+    			//040117 se interfaccia SCH passo endpoint null
+    			relationshipsElement.appendChild(createRelationshipElement(document, "gep63_availableEndpoints", null));
+    		}
            
-   
-
 	        TransformerFactory tf = TransformerFactory.newInstance();
 	        Transformer transformer1 = tf.newTransformer();
 	        transformer1.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
@@ -2816,6 +2820,9 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "sm63_NOTE_GEN_WSPROXY", (String) data.getArrayData(11)));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_NOTE", (String) data.getArrayData(12)));
             
+            //060117
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_ERRORE_GENERAZIONE_WSPROXY", ""));
+
             //OWL_SERVICEPROXY_ENDPOINT
             
             // Relationships element
