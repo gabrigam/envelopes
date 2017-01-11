@@ -68,6 +68,8 @@ public class WSDLLoaderBPM {
 		//040117 all'enpoint viene passato il campo sicurezza inserito nella proprieta' : sm63_USO_SICUREZZA
 		//040117 se interfaccia SCH passo endpoint null nella creazione SLD
 	    //060117 inserito sm63_ERRORE_GENERAZIONE_WSPROXY ="" di default su endpointproxy
+		//110117 gep63_TIPO_SERVIZIO diventa gep63_TIPOLOGIA
+		//110117 gep63_FLG_CTRL_TIPO_SERVIZIO diventa gep63_FLG_CTRL_TIPOLOGIA
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -1081,8 +1083,10 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_ABILITAZ_INFRASTR", (String) data.getArrayData(12)));
             
             //17122016 reps0 fields
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPO_SERVIZIO", (String)data.getArrayData(13)));
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_FLG_CTRL_TIPO_SERVIZIO", (String)data.getArrayData(14)));
+            //110117
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA", (String)data.getArrayData(13)));
+            //110117
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_FLG_CTRL_TIPOLOGIA", (String)data.getArrayData(14)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_UTILIZ_PIU_BAN_CLONI", (String)data.getArrayData(15)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_DISP_SERV", (String)data.getArrayData(16)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_VINCOLI_RIUSO", (String)data.getArrayData(17)));
@@ -1259,8 +1263,10 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_PGM_MD_X_MPE",(String) data.getArrayData(23)));
             
             //17122016 reps0 fields
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPO_SERVIZIO", (String)data.getArrayData(24)));
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_FLG_CTRL_TIPO_SERVIZIO", (String)data.getArrayData(25)));
+            //110117
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA", (String)data.getArrayData(24)));
+            //110117
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_FLG_CTRL_TIPOLOGIA", (String)data.getArrayData(25)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_UTILIZ_PIU_BAN_CLONI", (String)data.getArrayData(26)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_DISP_SERV", (String)data.getArrayData(27)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_VINCOLI_RIUSO", (String)data.getArrayData(28)));
@@ -1461,8 +1467,10 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_PGM_SERVIZIO",(String) data.getArrayData(24)));
             
             //17122016 reps0 fields
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPO_SERVIZIO", (String)data.getArrayData(25)));
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_FLG_CTRL_TIPO_SERVIZIO", (String)data.getArrayData(26)));
+            //110117
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA", (String)data.getArrayData(25)));
+            //110117
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_FLG_CTRL_TIPOLOGIA", (String)data.getArrayData(26)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_UTILIZ_PIU_BAN_CLONI", (String)data.getArrayData(27)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_DISP_SERV", (String)data.getArrayData(28)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_VINCOLI_RIUSO", (String)data.getArrayData(29)));
@@ -1868,8 +1876,10 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_ABILITAZ_INFRASTR", (String) data.getArrayData(12)));
             
             //17122016 reps0 fields
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPO_SERVIZIO", (String)data.getArrayData(13)));
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_FLG_CTRL_TIPO_SERVIZIO", (String)data.getArrayData(14)));
+            //110117
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA", (String)data.getArrayData(13)));
+            //110117
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_FLG_CTRL_TIPOLOGIA", (String)data.getArrayData(14)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_UTILIZ_PIU_BAN_CLONI", (String)data.getArrayData(15)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_DISP_SERV", (String)data.getArrayData(16)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_VINCOLI_RIUSO", (String)data.getArrayData(17)));
