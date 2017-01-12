@@ -2213,8 +2213,8 @@ public class WSDLLoaderBPM {
             
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_PRIMO_UTILIZZO", EMPTY_STRING));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_ULTIMO_UTILIZZO", EMPTY_STRING));
-            //finto
-            propertiesElement.appendChild(createPropertyElement(document, "sm63_SOAPProxy", EMPTY_STRING));
+            //finto mettilo per non andare in errore con modello
+            //propertiesElement.appendChild(createPropertyElement(document, "sm63_SOAPProxy", EMPTY_STRING));
 	
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_SOAP_ENDPOINT));
 
@@ -2226,9 +2226,11 @@ public class WSDLLoaderBPM {
             relationshipsElement.appendChild(createRelationshipElement(document, "sm63_wsdlPorts", null));
 
             if ( bsrUriserviceProxy != null && bsrUriserviceProxy.length() !=0){
-            	relationshipsElement.appendChild(createRelationshipElement(document, "rest80_SOAPProxy", bsrUriserviceProxy));
+            	//12012017 cambiato prima era rest80..
+            	relationshipsElement.appendChild(createRelationshipElement(document, "sm63_SOAPProxy", bsrUriserviceProxy));
             } else {
-            	relationshipsElement.appendChild(createRelationshipElement(document, "rest80_SOAPProxy", null));
+            	//12012017 cambiato prima era rest80..
+            	relationshipsElement.appendChild(createRelationshipElement(document, "sm63_SOAPProxy", null));
             }
 
             Element classificationsElement = document.createElement(ELEMENT_CLASSIFICATIONS);
