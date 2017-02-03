@@ -70,6 +70,7 @@ public class WSDLLoaderBPM {
 	    //060117 inserito sm63_ERRORE_GENERAZIONE_WSPROXY ="" di default su endpointproxy
 		//110117 gep63_TIPO_SERVIZIO diventa gep63_TIPOLOGIA
 		//110117 gep63_FLG_CTRL_TIPO_SERVIZIO diventa gep63_FLG_CTRL_TIPOLOGIA
+		//02022017 se BS o MPE la versione viene presa dal campo a video: tipo interfaccia
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -1434,7 +1435,17 @@ public class WSDLLoaderBPM {
              */
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAME, (String) data.getArrayData(2)));
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAMESPACE, ""));
-            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.VERSION, "00"));
+            
+            //02022017 se BS o MPE la versione viene presa dal campo a video: tipo interfaccia
+            String versione_corrente="00";            
+            if (((String)data.getArrayData(0)).equals("BSNBP")) {
+            	versione_corrente=(String) data.getArrayData(5);
+            }          
+            if (((String)data.getArrayData(0)).equals("MPE")) {
+            	versione_corrente=(String) data.getArrayData(5);
+            }
+            
+            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.VERSION, versione_corrente));
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.DESCRIPTION, (String) data.getArrayData(9)));
             
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_TRANS_SERVIZIO", (String) data.getArrayData(3)));         
