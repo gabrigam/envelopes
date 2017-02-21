@@ -71,6 +71,7 @@ public class WSDLLoaderBPM {
 		//110117 gep63_TIPO_SERVIZIO diventa gep63_TIPOLOGIA
 		//110117 gep63_FLG_CTRL_TIPO_SERVIZIO diventa gep63_FLG_CTRL_TIPOLOGIA
 		//02022017 se BS o MPE la versione viene presa dal campo a video: tipo interfaccia
+		//21022017 inserita la versione nella creazione di createCicsEndpointXMLDAta
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -2269,7 +2270,8 @@ public class WSDLLoaderBPM {
 	}
 	
 	//040117 all'enpoint viene passato il campo sicurezza inserito nella proprieta' : sm63_USO_SICUREZZA
-	public String createCicsEndpointXMLDAta(String name,String timeout,String stage,String environment,String state,String sicurezza) {
+	//21022017 inserita la versione nella creazione di createCicsEndpointXMLDAta
+	public String createCicsEndpointXMLDAta(String name,String timeout,String stage,String environment,String state,String sicurezza,String version) {
 		
 	    String output=null;
 	
@@ -2305,7 +2307,7 @@ public class WSDLLoaderBPM {
 
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAME, name));
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAMESPACE, EMPTY_STRING));
-            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.VERSION,EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.VERSION,version));//21022017
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.DESCRIPTION,EMPTY_STRING));
               
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceNamespace", "X"));
