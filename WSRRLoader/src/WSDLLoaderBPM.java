@@ -72,6 +72,7 @@ public class WSDLLoaderBPM {
 		//110117 gep63_FLG_CTRL_TIPO_SERVIZIO diventa gep63_FLG_CTRL_TIPOLOGIA
 		//02022017 se BS o MPE la versione viene presa dal campo a video: tipo interfaccia
 		//21022017 inserita la versione nella creazione di createCicsEndpointXMLDAta
+		//23022017 inseriti nuovi campi vedi nel codice
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -1117,15 +1118,20 @@ public class WSDLLoaderBPM {
             
             propertiesElement.appendChild(createPropertyElement(document, "gep63_ATTIVATO_IN_APPL", EMPTY_STRING));  
             propertiesElement.appendChild(createPropertyElement(document, "gep63_ATTIVATO_IN_SYST", EMPTY_STRING));
-            
-            
+                       
             //17122016
             propertiesElement.appendChild(createPropertyElement(document, "gep63_DATA_PUBBL_CREAZ_SERV", EMPTY_STRING));  
             propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_PUBBLICATORE_CREAZ_SERV", EMPTY_STRING));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_RICH_MODIFICA", EMPTY_STRING));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_RICH_CREAZIONE", matricola));
             
-           //costruisco il primary type dell'oggetto
+            //230217
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
+            
+            //costruisco il primary type dell'oggetto
                        
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_URI_ISP_SERVICE_VERSION+"SCOPENServiceVersion"));
             
@@ -1277,6 +1283,12 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_DATA_RITIRO_SERV", (String)data.getArrayData(31)));
             //040117 -
             //propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_USO_SICUREZZA", (String)data.getArrayData(32)));
+            
+            //230217
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
                            
             //costruisco il primary type dell'oggetto
             
@@ -1491,6 +1503,12 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_DATA_RITIRO_SERV", (String)data.getArrayData(32)));
             //040117 -
             //propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_USO_SICUREZZA", (String)data.getArrayData(33)));
+            
+            //230217
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
                   
             //costruisco il primary type dell'oggetto  
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_URI_ISP_SERVICE_VERSION+"SCHOSTServiceVersion"));
@@ -1926,10 +1944,14 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_PUBBLICATORE_CREAZ_SERV", EMPTY_STRING));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_RICH_MODIFICA", EMPTY_STRING));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_RICH_CREAZIONE", matricola));
+            
+            //230217
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
 
-	      //costruisco il primary type dell'oggetto
-	        
-	        
+	       //costruisco il primary type dell'oggetto	        	        
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_URI_ISP_SERVICE_VERSION+"SOPENServiceVersion"));
 	        
 	        propertiesElement.appendChild(createPropertyElement(document, PROPERTY_ALE63_ASSET_WEB_LINK, EMPTY_STRING));
