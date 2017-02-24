@@ -1129,7 +1129,7 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", ""));
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
+            //propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
             
             //costruisco il primary type dell'oggetto
                        
@@ -1288,7 +1288,7 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", ""));
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
+            //propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
                            
             //costruisco il primary type dell'oggetto
             
@@ -1508,7 +1508,7 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", ""));
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
+            //propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
                   
             //costruisco il primary type dell'oggetto  
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_URI_ISP_SERVICE_VERSION+"SCHOSTServiceVersion"));
@@ -1949,7 +1949,7 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", ""));
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
+            //propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
 
 	       //costruisco il primary type dell'oggetto	        	        
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_URI_ISP_SERVICE_VERSION+"SOPENServiceVersion"));
