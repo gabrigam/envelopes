@@ -73,6 +73,7 @@ public class WSDLLoaderBPM {
 		//02022017 se BS o MPE la versione viene presa dal campo a video: tipo interfaccia
 		//21022017 inserita la versione nella creazione di createCicsEndpointXMLDAta
 		//23022017 inseriti nuovi campi vedi nel codice
+		//08032017 inserito metodo per creazione SLA
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -161,6 +162,7 @@ public class WSDLLoaderBPM {
     private static final String OWL_URI_BUSINESS_SERVICE = "http://www.ibm.com/xmlns/prod/serviceregistry/profile/v6r3/GovernanceEnablementModel#BusinessService";
     private static final String OWL_URI_SERVICE_VERSION = "http://www.ibm.com/xmlns/prod/serviceregistry/profile/v6r3/GovernanceEnablementModel#ServiceVersion";
     private static final String OWL_URI_SLD = "http://www.ibm.com/xmlns/prod/serviceregistry/profile/v6r3/GovernanceEnablementModel#ServiceLevelDefinition";
+    private static final String OWL_URI_SLA = "http://www.ibm.com/xmlns/prod/serviceregistry/profile/v6r3/GovernanceProfileExtensions#ServiceLevelAgreement";
     private static final String OWL_REST_INTERFACE="http://www.ibm.com/xmlns/prod/serviceregistry/profile/v8r0/RESTModel#RESTServiceInterface";
 
     private static final String OWL_REST_ENDPOINT="http://www.ibm.com/xmlns/prod/serviceregistry/profile/v8r0/RESTModel#RESTServiceEndpoint";
@@ -2621,6 +2623,86 @@ public class WSDLLoaderBPM {
     			relationshipsElement.appendChild(createRelationshipElement(document, "gep63_availableEndpoints", null));
     		}
            
+	        TransformerFactory tf = TransformerFactory.newInstance();
+	        Transformer transformer1 = tf.newTransformer();
+	        transformer1.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+	        StringWriter writer = new StringWriter();
+	        transformer1.transform(new DOMSource(document), new StreamResult(writer));
+	        output = writer.getBuffer().toString().replaceAll("\n|\r", "");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            output=null;
+        }
+
+        return output;
+    }
+    
+    //08032017
+    public String createServiceLevelAgreementXMLData(String name,String bsrURISLD,String userdefTime,String designTime) {
+
+        // Create the variable to return
+        String bsrURI = null;
+        String output;
+
+        try {
+	        try {
+	            docBuilderFactory = DocumentBuilderFactory.newInstance();
+	            docBuilder = docBuilderFactory.newDocumentBuilder();
+	
+	            XPathFactory xPathFactory = XPathFactory.newInstance();
+	            XPath xPath = xPathFactory.newXPath();
+	            valueAttrExpression = xPath.compile(XPATH_EXPR_VALUE_ATTR);
+	        } catch (ParserConfigurationException e) {
+	            e.printStackTrace();
+	            throw e;
+	        } catch (XPathExpressionException e) {
+	            e.printStackTrace();
+	            throw e;
+	        }
+
+            Document document = docBuilder.newDocument();
+
+            // Resources element
+            Element resourcesElement = document.createElement(ELEMENT_RESOURCES);
+            document.appendChild(resourcesElement);
+
+            // Resource element
+            Element resourceElement = document.createElement(ELEMENT_RESOURCE);
+            resourcesElement.appendChild(resourceElement);
+
+            // Properties element
+            Element propertiesElement = document.createElement(ELEMENT_PROPERTIES);
+            resourceElement.appendChild(propertiesElement);
+
+            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAME, name));
+            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_URI_SLA ));
+            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.DESCRIPTION, name));
+            propertiesElement.appendChild(createPropertyElement(document, "gpx63_peakMessageRateDailyDuration", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gpx63_DATA_ULTIMO_UTILIZZO_LEGAME_APPL", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gpx63_DATA_ULTIMO_UTILIZZO_LEGAME_SYST", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gpx63_peakMessageRateDailyTime", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gpx63_USERDEFTIME", userdefTime));
+            propertiesElement.appendChild(createPropertyElement(document, "gpx63_DESIGNTIME", designTime));
+            propertiesElement.appendChild(createPropertyElement(document, "gpx63_DATA_ULTIMO_UTILIZZO_LEGAME_PROD", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_versionMatchCriteria", "ExactVersion"));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_contextIdentifier", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gpx63_RUNTIME", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gpx63_maximumMessagesPerDay", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gpx63_minimumMessagesPerDay", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gpx63_averageMessagesPerDay", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gpx63_peakMessageRate", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_subscriptionTerminationDate", EMPTY_STRING));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_subscriptionAvailabilityDate", EMPTY_STRING));
+
+            // Relationships element
+            Element relationshipsElement = document.createElement(ELEMENT_RELATIONSHIPS);
+            resourceElement.appendChild(relationshipsElement);
+
+            relationshipsElement.appendChild(createRelationshipElement(document, "gep63_boundSCAimport", null));
+            relationshipsElement.appendChild(createRelationshipElement(document, "gep63_agreedEndpoints", bsrURISLD));
+            relationshipsElement.appendChild(createRelationshipElement(document, "gep63_serviceLevelPolicies", null));
+          
 	        TransformerFactory tf = TransformerFactory.newInstance();
 	        Transformer transformer1 = tf.newTransformer();
 	        transformer1.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
