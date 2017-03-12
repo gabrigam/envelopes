@@ -2174,11 +2174,13 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.DESCRIPTION,EMPTY_STRING));
               
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceNamespace", "X"));
-            propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceVersion", "X"));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceVersion", ""));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_endpointType","ZRES"));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_Timeout", timeout));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_USO_SICUREZZA", sicurezza));
-            propertiesElement.appendChild(createPropertyElement(document, "sm63_NOME_CPY", nomecpy));        
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_NOME_CPY", nomecpy)); 
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceName", "X"));
+            
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_PRIMO_UTILIZZO", EMPTY_STRING));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_ULTIMO_UTILIZZO", EMPTY_STRING));
             	
@@ -2254,7 +2256,8 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.DESCRIPTION,EMPTY_STRING));
               
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceNamespace", "X"));
-            propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceVersion", "X"));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceVersion", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceName", "X"));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_endpointType","WOLA"));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_Timeout", timeout));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_USO_SICUREZZA", sicurezza));
