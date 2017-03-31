@@ -77,6 +77,7 @@ public class WSDLLoaderBPM {
 		//08032017 + gep63_DOC_ANALISI_DETTAGLIO + gep63_SECURITY_ROLE
 		//08032017 aggiungo il campo sm63_ESPOSTO_COME_API nell endpointRest
 		//11032017 creato createZResEndpointXMLDAta e createWola...
+		//31032017 i campi ora arrivano in input gep63_DERIVANTE_DA_ALTRI_SERV - gep63_TIPOLOGIA_OGGETTO_ESISTENTE - gep63_NOME_SERVIZIO_PRECEDENTE 
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -1138,10 +1139,17 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_RICH_CREAZIONE", matricola));
             
             //230217
+            /**
             propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", ""));
             //propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
+            **/
+            
+            //31032017 i campi ora arrivano in input gep63_DERIVANTE_DA_ALTRI_SERV - gep63_TIPOLOGIA_OGGETTO_ESISTENTE - gep63_NOME_SERVIZIO_PRECEDENTE 
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", (String)data.getArrayData(38)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", (String)data.getArrayData(39)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", (String)data.getArrayData(40)));
             
             //costruisco il primary type dell'oggetto
                        
@@ -1301,10 +1309,17 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SECURITY_ROLE", (String)data.getArrayData(33)));
             
             //230217
+            /**
             propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", ""));
             //propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
+            **/
+            
+            //31032017 i campi ora arrivano in input gep63_DERIVANTE_DA_ALTRI_SERV - gep63_TIPOLOGIA_OGGETTO_ESISTENTE - gep63_NOME_SERVIZIO_PRECEDENTE 
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", (String)data.getArrayData(34)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", (String)data.getArrayData(35)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", (String)data.getArrayData(36)));
                            
             //costruisco il primary type dell'oggetto
             
@@ -1525,9 +1540,17 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SECURITY_ROLE", (String)data.getArrayData(34)));
             
             //230217
+            /**
             propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", ""));
+            **/
+            
+            //31032017 i campi ora arrivano in input gep63_DERIVANTE_DA_ALTRI_SERV - gep63_TIPOLOGIA_OGGETTO_ESISTENTE - gep63_NOME_SERVIZIO_PRECEDENTE 
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", (String)data.getArrayData(35)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", (String)data.getArrayData(36)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", (String)data.getArrayData(37)));
+            
             //propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
                   
             //costruisco il primary type dell'oggetto  
@@ -1970,10 +1993,17 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_MATR_RICH_CREAZIONE", matricola));
             
             //230217
+            /**
             propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", ""));
             //propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
+            **/
+            
+            //31032017 i campi ora arrivano in input gep63_DERIVANTE_DA_ALTRI_SERV - gep63_TIPOLOGIA_OGGETTO_ESISTENTE - gep63_NOME_SERVIZIO_PRECEDENTE 
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_DERIVANTE_DA_ALTRI_SERV", (String)data.getArrayData(38)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", (String)data.getArrayData(39)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", (String)data.getArrayData(40)));
 
 	       //costruisco il primary type dell'oggetto	        	        
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_URI_ISP_SERVICE_VERSION+"SOPENServiceVersion"));
