@@ -78,6 +78,7 @@ public class WSDLLoaderBPM {
 		//08032017 aggiungo il campo sm63_ESPOSTO_COME_API nell endpointRest
 		//11032017 creato createZResEndpointXMLDAta e createWola...
 		//31032017 i campi ora arrivano in input gep63_DERIVANTE_DA_ALTRI_SERV - gep63_TIPOLOGIA_OGGETTO_ESISTENTE - gep63_NOME_SERVIZIO_PRECEDENTE 
+        //02/05/2017 propertiesElement.appendChild(createPropertyElement(document, "sm63_SPECIALIZZAZIONE",""));
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -2112,6 +2113,8 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceName", "X"));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_Timeout", timeout));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceVersion", "X"));
+            
+            
             //040117
             propertiesElement.appendChild(createPropertyElement(document, "sm63_USO_SICUREZZA", sicurezza));
             
@@ -2125,6 +2128,8 @@ public class WSDLLoaderBPM {
             //08032017
             propertiesElement.appendChild(createPropertyElement(document, "rest80_ESPOSTO_COME_API", espostoComeApi));
             
+            //02/05/2017
+        	propertiesElement.appendChild(createPropertyElement(document, "sm63_SPECIALIZZAZIONE",""));
 	
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_REST_ENDPOINT));
 
@@ -2211,6 +2216,9 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "sm63_NOME_CPY", nomecpy)); 
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceName", "X"));
             
+            //02/05/2017
+        	propertiesElement.appendChild(createPropertyElement(document, "sm63_SPECIALIZZAZIONE",""));
+            
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_PRIMO_UTILIZZO", EMPTY_STRING));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_ULTIMO_UTILIZZO", EMPTY_STRING));
             	
@@ -2295,6 +2303,9 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "sm63_NOME_CPY_OUT", nomecpy_out));  
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_PRIMO_UTILIZZO", EMPTY_STRING));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_ULTIMO_UTILIZZO", EMPTY_STRING));
+            
+            //02/05/2017
+        	propertiesElement.appendChild(createPropertyElement(document, "sm63_SPECIALIZZAZIONE",""));
             
             propertiesElement.appendChild(createPropertyElement(document, "sm63_PGM_MD", "Y1BP0DLW"));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_NOME_CPY_SIST", "Y1BPMWLA"));
@@ -2469,6 +2480,9 @@ public class WSDLLoaderBPM {
             
             //28/07/2016
             propertiesElement.appendChild(createPropertyElement(document, "sm63_ISPHEADER_FLAG", ispheader));
+            
+            //02/05/2017
+        	propertiesElement.appendChild(createPropertyElement(document, "sm63_SPECIALIZZAZIONE",""));
             
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_PRIMO_UTILIZZO", EMPTY_STRING));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_ULTIMO_UTILIZZO", EMPTY_STRING));
@@ -2668,6 +2682,9 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "sm63_BACKOUT_COUNT", "3"));
             //040117
             propertiesElement.appendChild(createPropertyElement(document, "sm63_USO_SICUREZZA", sicurezza));
+            
+            //02/05/2017
+        	propertiesElement.appendChild(createPropertyElement(document, "sm63_SPECIALIZZAZIONE",""));
 	
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_MQ_ENDPOINT));
 
