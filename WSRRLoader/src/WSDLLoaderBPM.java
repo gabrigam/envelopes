@@ -2393,6 +2393,9 @@ public class WSDLLoaderBPM {
                         
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_PRIMO_UTILIZZO", EMPTY_STRING));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_DATA_ULTIMO_UTILIZZO", EMPTY_STRING));
+            
+            //02/05/2017
+        	propertiesElement.appendChild(createPropertyElement(document, "sm63_SPECIALIZZAZIONE",""));
 	
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_CALLABLE_ENDPOINT));
 
@@ -2583,6 +2586,9 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceVersion", "X"));
             //040117
             propertiesElement.appendChild(createPropertyElement(document, "sm63_USO_SICUREZZA", sicurezza));
+            
+            //02/05/2017
+        	propertiesElement.appendChild(createPropertyElement(document, "sm63_SPECIALIZZAZIONE",""));
 	
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_CICS_ENDPOINT));
 
