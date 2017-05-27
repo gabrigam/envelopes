@@ -81,6 +81,8 @@ public class WSDLLoaderBPM {
         //02/05/2017 propertiesElement.appendChild(createPropertyElement(document, "sm63_SPECIALIZZAZIONE",""));
         //10052017 propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_PGM_MD_X_INTEROPER", "Y1BP0CMB"));
 		//12052017 propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_PGM_MD_X_INTEROPER", "Y1BP0CMB"));
+		//18052017 propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_PGM_MD_X_INTEROPER", "")); propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_PGM_MD_X_INTEROPER", ""));
+		
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -1325,7 +1327,7 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", (String)data.getArrayData(36)));
            
             //12052017
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_PGM_MD_X_INTEROPER", "Y1BP0CMB"));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_PGM_MD_X_INTEROPER", ""));
             
             //costruisco il primary type dell'oggetto
             
@@ -1558,7 +1560,7 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", (String)data.getArrayData(37)));
             
             //10052017
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_PGM_MD_X_INTEROPER", "Y1BP0CMB"));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_PGM_MD_X_INTEROPER", ""));
             
             //propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
                   
