@@ -1036,8 +1036,8 @@ public class WSDLLoaderBPM {
     }
     
     
-    
-    public  String createServiceSCOPENServiceVersionXMLDAta(TWList data,String sdlBsrUri,String organizationBsrUri,String matricola) {
+    //281117 aggiungo alla fine dei parametri anche la versione
+    public  String createServiceSCOPENServiceVersionXMLDAta(TWList data,String sdlBsrUri,String organizationBsrUri,String matricola,String version) {
     	
  
         String output=null;
@@ -1083,7 +1083,7 @@ public class WSDLLoaderBPM {
              */
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAME, (String) data.getArrayData(2)));
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAMESPACE,""));
-            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.VERSION, "00"));
+            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.VERSION, version)); //281117
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.DESCRIPTION,(String) data.getArrayData(5)));
 
             //propertiesElement.appendChild(createPropertyElement(document, "gep63_ACRONIMO", (String) data.getArrayData(3))); 
@@ -1217,7 +1217,8 @@ public class WSDLLoaderBPM {
 
         return output;
     }
-    public  String createServiceSHOSTServiceVersionXMLDAta( TWList data,String sdlBsrUri,String organizationBsrUri,String matricola) {
+    //281117 aggiungo alla fine dei parametri anche la versione
+    public  String createServiceSHOSTServiceVersionXMLDAta( TWList data,String sdlBsrUri,String organizationBsrUri,String matricola,String version) {
  
     	
         String output=null;
@@ -1264,7 +1265,7 @@ public class WSDLLoaderBPM {
              */
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAME, (String) data.getArrayData(2)));
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAMESPACE, ""));
-            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.VERSION, "00"));
+            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.VERSION, version)); //281117
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.DESCRIPTION, (String) data.getArrayData(9)));
             
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_PGM_SERVIZIO", (String) data.getArrayData(3)));
@@ -1897,8 +1898,8 @@ public class WSDLLoaderBPM {
 	public String getItemsWSRR(TWList items,int indice) {
 		return (String) items.getArrayData(indice);
 	}
-
-	public String createServiceSOPENServiceVersionXMLDAta(TWList data,String sdlBsrUri,String organizationBsrUri,String matricola) {
+    //281117 aggiungo alla fine dei parametri anche la versione
+	public String createServiceSOPENServiceVersionXMLDAta(TWList data,String sdlBsrUri,String organizationBsrUri,String matricola,String version) {
 	
 	    String output=null;
 	
@@ -1943,7 +1944,7 @@ public class WSDLLoaderBPM {
 	         */
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAME, (String) data.getArrayData(2)));
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAMESPACE,""));
-	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.VERSION, "00"));
+	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.VERSION, version));//281117
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.DESCRIPTION, (String) data.getArrayData(5)));
 	
 	        //propertiesElement.appendChild(createPropertyElement(document, "gep63_ACRONIMO", (String) data.getArrayData(3))); 
