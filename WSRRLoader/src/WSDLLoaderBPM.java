@@ -1036,7 +1036,7 @@ public class WSDLLoaderBPM {
     }
     
     
-    //281117 aggiungo alla fine dei parametri anche la versione
+    //281117 aggiungo alla fine dei parametri anche la versione.
     public  String createServiceSCOPENServiceVersionXMLDAta(TWList data,String sdlBsrUri,String organizationBsrUri,String matricola,String version) {
     	
  
@@ -1217,7 +1217,7 @@ public class WSDLLoaderBPM {
 
         return output;
     }
-    //281117 aggiungo alla fine dei parametri anche la versione
+    //281117 aggiungo alla fine dei parametri anche la versione.
     public  String createServiceSHOSTServiceVersionXMLDAta( TWList data,String sdlBsrUri,String organizationBsrUri,String matricola,String version) {
  
     	
@@ -1898,7 +1898,7 @@ public class WSDLLoaderBPM {
 	public String getItemsWSRR(TWList items,int indice) {
 		return (String) items.getArrayData(indice);
 	}
-    //281117 aggiungo alla fine dei parametri anche la versione
+    //281117 aggiungo alla fine dei parametri anche la versione.
 	public String createServiceSOPENServiceVersionXMLDAta(TWList data,String sdlBsrUri,String organizationBsrUri,String matricola,String version) {
 	
 	    String output=null;
