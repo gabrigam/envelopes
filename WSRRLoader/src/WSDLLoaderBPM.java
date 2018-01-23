@@ -81,8 +81,10 @@ public class WSDLLoaderBPM {
         //02/05/2017 propertiesElement.appendChild(createPropertyElement(document, "sm63_SPECIALIZZAZIONE",""));
         //10052017 propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_PGM_MD_X_INTEROPER", "Y1BP0CMB"));
 		//12052017 propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_PGM_MD_X_INTEROPER", "Y1BP0CMB"));
+		//281117 aggiungo alla fine dei parametri anche la versione ad esclusione di SCHOST
 		//18052017 propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_PGM_MD_X_INTEROPER", "")); propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_PGM_MD_X_INTEROPER", ""));
-		
+		//281117 aggiungo alla fine dei parametri anche la versione ad esclusione di SCHOST
+		//170118 passo anche a questo metodo la versione in modo che sia allineato con gli altri
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -1438,9 +1440,20 @@ public class WSDLLoaderBPM {
         System.out.println(".................................................................................................");
         return output;
     }
-    public String createServiceSCHOSTServiceVersionXMLDAta(TWList data,String sdlBsrUri,String organizationBsrUri,String matricola) {
-
-    	
+    //17012018 passo anche a questo metodo la versione in modo che sia allineato con gli altri
+    //inoltre la versione non viene piu' settata del codice:
+    /*
+     *      String versione_corrente="00";            
+            if (((String)data.getArrayData(0)).equals("BSNBP")) {
+            	versione_corrente=(String) data.getArrayData(5);
+            }          
+            if (((String)data.getArrayData(0)).equals("MPE")) {
+            	versione_corrente=(String) data.getArrayData(5);
+            }
+     */
+    //ma viene presa quella passata
+    public String createServiceSCHOSTServiceVersionXMLDAta(TWList data,String sdlBsrUri,String organizationBsrUri,String matricola,String versione) {
+   	
         String output=null;
         String type =(String) data.getArrayData(0);
 
@@ -1488,8 +1501,11 @@ public class WSDLLoaderBPM {
              */
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAME, (String) data.getArrayData(2)));
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAMESPACE, ""));
-            
+                        
+            String versione_corrente=versione;
+            /**    deprecata
             //02022017 se BS o MPE la versione viene presa dal campo a video: tipo interfaccia
+        
             String versione_corrente="00";            
             if (((String)data.getArrayData(0)).equals("BSNBP")) {
             	versione_corrente=(String) data.getArrayData(5);
@@ -1497,8 +1513,8 @@ public class WSDLLoaderBPM {
             if (((String)data.getArrayData(0)).equals("MPE")) {
             	versione_corrente=(String) data.getArrayData(5);
             }
-            
-            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.VERSION, versione_corrente));
+            **/
+            propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.VERSION, versione));//170118
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.DESCRIPTION, (String) data.getArrayData(9)));
             
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_TRANS_SERVIZIO", (String) data.getArrayData(3)));         
