@@ -85,6 +85,7 @@ public class WSDLLoaderBPM {
 		//18052017 propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_PGM_MD_X_INTEROPER", "")); propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_PGM_MD_X_INTEROPER", ""));
 		//281117 aggiungo alla fine dei parametri anche la versione ad esclusione di SCHOST
 		//170118 passo anche a questo metodo la versione in modo che sia allineato con gli altri
+		//230118 aggiunti gep63_SOPEN_ABILITAZ_WRITE gep63_SOPEN_ABILITAZ_READ gep63_SOPEN_MOD_UTENTI_BUS
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -2033,6 +2034,12 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", (String)data.getArrayData(39)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", (String)data.getArrayData(40)));
 
+            //230118 
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_ABILITAZ_READ", (String)data.getArrayData(41)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_ABILITAZ_WRITE", (String)data.getArrayData(42)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_MOD_UTENTI_BUS", (String)data.getArrayData(43)));
+            
+            
 	       //costruisco il primary type dell'oggetto	        	        
 	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_URI_ISP_SERVICE_VERSION+"SOPENServiceVersion"));
 	        
