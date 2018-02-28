@@ -86,6 +86,7 @@ public class WSDLLoaderBPM {
 		//281117 aggiungo alla fine dei parametri anche la versione ad esclusione di SCHOST
 		//170118 passo anche a questo metodo la versione in modo che sia allineato con gli altri
 		//230118 aggiunti gep63_SOPEN_ABILITAZ_WRITE gep63_SOPEN_ABILITAZ_READ gep63_SOPEN_MOD_UTENTI_BUS
+		//240218 aggiunto il campo gep63_SCHOST_ACRONIMO_RTC tolto blocco statico dove tentavo di autenticarmi con la mia user/password dei test che generava errore di autenticazione
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -221,6 +222,7 @@ public class WSDLLoaderBPM {
             }
         });
 
+        /** non serve
         // Provide user and password to the Authenticator
         // Required if application security is on for the target Service Registry
         // Change "userid" and "password" to the correct login credentials
@@ -230,6 +232,7 @@ public class WSDLLoaderBPM {
                 return new PasswordAuthentication("gabriele", "viviana".toCharArray());
             }
         });
+        **/
     }
 
     /**
@@ -1579,6 +1582,9 @@ public class WSDLLoaderBPM {
             
             //10052017
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_PGM_MD_X_INTEROPER", ""));
+            
+            //240218
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_ACRONIMO_RTC", (String)data.getArrayData(38)));
             
             //propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
                   
