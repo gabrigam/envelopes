@@ -87,6 +87,7 @@ public class WSDLLoaderBPM {
 		//170118 passo anche a questo metodo la versione in modo che sia allineato con gli altri
 		//230118 aggiunti gep63_SOPEN_ABILITAZ_WRITE gep63_SOPEN_ABILITAZ_READ gep63_SOPEN_MOD_UTENTI_BUS
 		//240218 aggiunto il campo gep63_SCHOST_ACRONIMO_RTC tolto blocco statico dove tentavo di autenticarmi con la mia user/password dei test che generava errore di autenticazione
+		//130318 corretto baco sui callable nel tipo del EP metteva REST ora  inserito CALLABLE :  propertiesElement.appendChild(createPropertyElement(document, "sm63_endpointType","CALLABLE"));
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -2422,7 +2423,7 @@ public class WSDLLoaderBPM {
               
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceNamespace", "X"));
             propertiesElement.appendChild(createPropertyElement(document, "rest80_baseURL", "X"));
-            propertiesElement.appendChild(createPropertyElement(document, "sm63_endpointType","REST"));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_endpointType","CALLABLE")); //130318 baco prima c'era REST
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceName", "X"));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_Timeout", timeout));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceVersion", "X"));
