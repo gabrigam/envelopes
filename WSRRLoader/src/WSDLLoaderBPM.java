@@ -88,6 +88,7 @@ public class WSDLLoaderBPM {
 		//230118 aggiunti gep63_SOPEN_ABILITAZ_WRITE gep63_SOPEN_ABILITAZ_READ gep63_SOPEN_MOD_UTENTI_BUS
 		//240218 aggiunto il campo gep63_SCHOST_ACRONIMO_RTC tolto blocco statico dove tentavo di autenticarmi con la mia user/password dei test che generava errore di autenticazione
 		//130318 corretto baco sui callable nel tipo del EP metteva REST ora  inserito CALLABLE :  propertiesElement.appendChild(createPropertyElement(document, "sm63_endpointType","CALLABLE"));
+	    //050418 createCallableEndpoint passati due nuovi parametri per settare sm63_serviceNamespace e sm63_serviceName
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -2382,7 +2383,8 @@ public class WSDLLoaderBPM {
 	    return output;
 	}
 	//040117 all'enpoint viene passato il campo sicurezza inserito nella proprieta' : sm63_USO_SICUREZZA
-	public String createCallableEndpointXMLDAta(String name,String timeout,String environment,String state,String bsrUriserviceProxy,String sicurezza) {
+	//050416 passo al metodo due nuovi campi per settare : sm63_serviceNamespace e sm63_serviceName
+	public String createCallableEndpointXMLDAta(String name,String timeout,String environment,String state,String bsrUriserviceProxy,String sicurezza,String serviceNS,String serviceName) {
 		
 	    String output=null;
 	
@@ -2421,10 +2423,10 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.VERSION,EMPTY_STRING));
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.DESCRIPTION,EMPTY_STRING));
               
-            propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceNamespace", "X"));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceNamespace", serviceNS)); //050418 passo parametro prima era "X"
             propertiesElement.appendChild(createPropertyElement(document, "rest80_baseURL", "X"));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_endpointType","CALLABLE")); //130318 baco prima c'era REST
-            propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceName", "X"));
+            propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceName", serviceName)); //050418 passo parametro prima era "X"
             propertiesElement.appendChild(createPropertyElement(document, "sm63_Timeout", timeout));
             propertiesElement.appendChild(createPropertyElement(document, "sm63_serviceVersion", "X"));
             //040117
