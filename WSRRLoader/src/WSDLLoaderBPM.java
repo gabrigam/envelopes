@@ -89,6 +89,28 @@ public class WSDLLoaderBPM {
 		//240218 aggiunto il campo gep63_SCHOST_ACRONIMO_RTC tolto blocco statico dove tentavo di autenticarmi con la mia user/password dei test che generava errore di autenticazione
 		//130318 corretto baco sui callable nel tipo del EP metteva REST ora  inserito CALLABLE :  propertiesElement.appendChild(createPropertyElement(document, "sm63_endpointType","CALLABLE"));
 	    //050418 createCallableEndpoint passati due nuovi parametri per settare sm63_serviceNamespace e sm63_serviceName
+        //28052018
+        /**
+         * 	gep63_SCHOST_PATTERN_INTERAZIONE           
+			gep63_SCHOST_AMBITO_IMPLEMENTAZIONE		
+			gep63_SCHOST_DIFF_VERS_PRECEDENTE               
+			gep63_SCHOST_IMPL_VERSIONE			
+			gep63_SCHOST_IMPL_TEMPI_RISP			
+			gep63_SCHOST_LINK_SIN_APPS_EST			
+			gep63_SCHOST_VOLUME_GIORN			
+			gep63_SCHOST_DOWNTIME_PIANIFICATO		
+			gep63_SCHOST_AMBIENTE_FISICO			
+			gep63_SCHOST_STATO_ATTUALE_FUNZ			
+			gep63_SCHOST_REPS0                             
+         * 
+         * 
+         *  in service version per tutte le versioni sono inseriti i seguenti campi:
+         *  
+         *  gep63_CAT_SERVIZIO
+         *  gep63_CAT_INPUT
+         *  gep63_CAT_OUTPUT
+         */
+		
 	}
     /* The CSV file that will be loaded */
     private File csvFile = null;
@@ -1164,6 +1186,11 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_TIPOLOGIA_OGGETTO_ESISTENTE", (String)data.getArrayData(39)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_NOME_SERVIZIO_PRECEDENTE", (String)data.getArrayData(40)));
             
+            //280518
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_CAT_SERVIZIO", (String)data.getArrayData(41)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_CAT_INPUT", (String)data.getArrayData(42)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_CAT_OUTPUT", (String)data.getArrayData(43)));
+            
             //costruisco il primary type dell'oggetto
                        
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_URI_ISP_SERVICE_VERSION+"SCOPENServiceVersion"));
@@ -1337,6 +1364,11 @@ public class WSDLLoaderBPM {
            
             //12052017
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_PGM_MD_X_INTEROPER", ""));
+            
+            //280518
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_CAT_SERVIZIO", (String)data.getArrayData(37)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_CAT_INPUT", (String)data.getArrayData(38)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_CAT_OUTPUT", (String)data.getArrayData(39)));
             
             //costruisco il primary type dell'oggetto
             
@@ -1589,6 +1621,40 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_ACRONIMO_RTC", (String)data.getArrayData(38)));
             
             //propertiesElement.appendChild(createPropertyElement(document, "gep63_ESPOSTO_COME_API", ""));
+            
+            //28052018
+            /**
+             * 	gep63_SCHOST_PATTERN_INTERAZIONE           
+				gep63_SCHOST_AMBITO_IMPLEMENTAZIONE		
+				gep63_SCHOST_DIFF_VERS_PRECEDENTE               
+				gep63_SCHOST_IMPL_VERSIONE			
+				gep63_SCHOST_IMPL_TEMPI_RISP			
+				gep63_SCHOST_LINK_SIN_APPS_EST			
+				gep63_SCHOST_VOLUME_GIORN			
+				gep63_SCHOST_DOWNTIME_PIANIFICATO		
+				gep63_SCHOST_AMBIENTE_FISICO			
+				gep63_SCHOST_STATO_ATTUALE_FUNZ			
+				gep63_SCHOST_REPS0				
+				gep63_CAT_SERVIZIO gep63_CAT_INPUT gep63_CAT_OUTPUT				                           
+             * 
+             */
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_CAT_SERVIZIO", (String)data.getArrayData(39)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_CAT_INPUT", (String)data.getArrayData(40)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_CAT_OUTPUT", (String)data.getArrayData(41)));
+            
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_PATTERN_INTERAZIONE", (String)data.getArrayData(42)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_AMBITO_IMPLEMENTAZIONE", (String)data.getArrayData(43)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_VOLUME_GIORN", (String)data.getArrayData(44)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_DIFF_VERS_PRECEDENTE", (String)data.getArrayData(45)));            
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_IMPL_VERSIONE", (String)data.getArrayData(46)));
+            
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_IMPL_TEMPI_RISP", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_LINK_SIN_APPS_EST", ""));
+           
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_DOWNTIME_PIANIFICATO", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_AMBIENTE_FISICO", ""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_STATO_ATTUALE_FUNZ",""));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_REPS0", ""));
                   
             //costruisco il primary type dell'oggetto  
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_URI_ISP_SERVICE_VERSION+"SCHOSTServiceVersion"));
@@ -2046,6 +2112,11 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_ABILITAZ_READ", (String)data.getArrayData(41)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_ABILITAZ_WRITE", (String)data.getArrayData(42)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SOPEN_MOD_UTENTI_BUS", (String)data.getArrayData(43)));
+            
+            //280518
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_CAT_SERVIZIO", (String)data.getArrayData(44)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_CAT_INPUT", (String)data.getArrayData(45)));
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_CAT_OUTPUT", (String)data.getArrayData(46)));
             
             
 	       //costruisco il primary type dell'oggetto	        	        
