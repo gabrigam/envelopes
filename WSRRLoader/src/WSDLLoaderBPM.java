@@ -110,6 +110,7 @@ public class WSDLLoaderBPM {
          *  gep63_CAT_INPUT
          *  gep63_CAT_OUTPUT
          */
+		//12062018 passo (String)data.getArrayData(47) prima era ""
 		
 	}
     /* The CSV file that will be loaded */
@@ -1654,7 +1655,9 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_DOWNTIME_PIANIFICATO", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_AMBIENTE_FISICO", ""));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_STATO_ATTUALE_FUNZ",""));
-            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_REPS0", ""));
+            
+            //12062018 passo (String)data.getArrayData(47) prima era ""
+            propertiesElement.appendChild(createPropertyElement(document, "gep63_SCHOST_REPS0", (String)data.getArrayData(47)));
                   
             //costruisco il primary type dell'oggetto  
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.PRIMARY_TYPE, OWL_URI_ISP_SERVICE_VERSION+"SCHOSTServiceVersion"));
