@@ -3350,11 +3350,11 @@ public class WSDLLoaderBPM {
     	//250717 modifico il formato del TS per aderire alla modifica del toolkit (chiamata Rest)
     	//che ora controlla che il formato del TS sia nella forma: yyyyMMddHHmmssSSSSSS
     	//in tracciatura da quanto detto il formato verra' poi trasformato in: yyyy-MM-dd-HH:mm:ss.SSSSSS
-    	
+    	//260618 inserito 00 in ServiceVersion
     	//String now=new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss.SSSSSS").format(new Date());
     	String now=new SimpleDateFormat("yyyyMMddHHmmssSSSSSS").format(new Date());
     	
-    	String ispHeader="<ISPWebservicesHeader><RequestInfo><TransactionId>%TRANSID%</TransactionId><Timestamp>%TS%</Timestamp><ServiceID>%SERVICEID%</ServiceID><ServiceVersion/></RequestInfo><OperatorInfo UserID=\"%USER%\" IsVirtualUser=\"false\"/><CompanyInfo><ISPCallerCompanyIDCode>01</ISPCallerCompanyIDCode><ISPServiceCompanyIDCode>01</ISPServiceCompanyIDCode></CompanyInfo><BusinessInfo><CustomerID>0</CustomerID></BusinessInfo><TechnicalInfo><ChannelIDCode>WS</ChannelIDCode><ApplicationID>BPM</ApplicationID><CallerServerName>SERVER</CallerServerName><CallerProgramName>BPMPA</CallerProgramName></TechnicalInfo><AdditionalBusinessInfo><Param Name=\"CodUnitaOperativa\" Value=\"14493\"/></AdditionalBusinessInfo></ISPWebservicesHeader>";
+    	String ispHeader="<ISPWebservicesHeader><RequestInfo><TransactionId>%TRANSID%</TransactionId><Timestamp>%TS%</Timestamp><ServiceID>%SERVICEID%</ServiceID><ServiceVersion>00</ServiceVersion></RequestInfo><OperatorInfo UserID=\"%USER%\" IsVirtualUser=\"false\"/><CompanyInfo><ISPCallerCompanyIDCode>01</ISPCallerCompanyIDCode><ISPServiceCompanyIDCode>01</ISPServiceCompanyIDCode></CompanyInfo><BusinessInfo><CustomerID>0</CustomerID></BusinessInfo><TechnicalInfo><ChannelIDCode>WS</ChannelIDCode><ApplicationID>BPM</ApplicationID><CallerServerName>SERVER</CallerServerName><CallerProgramName>BPMPA</CallerProgramName></TechnicalInfo><AdditionalBusinessInfo><Param Name=\"CodUnitaOperativa\" Value=\"14493\"/></AdditionalBusinessInfo></ISPWebservicesHeader>";
         
     	ispHeader=ispHeader.replace("%TRANSID%", bpID);
     	ispHeader=ispHeader.replace("%TS%", now);
