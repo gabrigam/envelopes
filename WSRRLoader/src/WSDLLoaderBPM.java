@@ -111,6 +111,7 @@ public class WSDLLoaderBPM {
          *  gep63_CAT_OUTPUT
          */
 		//12062018 passo (String)data.getArrayData(47) prima era ""
+		//260618 inserito 00 in ServiceVersion
 		
 	}
     /* The CSV file that will be loaded */
