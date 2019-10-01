@@ -90,6 +90,7 @@ public class WSDLLoaderBPM {
 		//130318 corretto baco sui callable nel tipo del EP metteva REST ora  inserito CALLABLE :  propertiesElement.appendChild(createPropertyElement(document, "sm63_endpointType","CALLABLE"));
 	    //050418 createCallableEndpoint passati due nuovi parametri per settare sm63_serviceNamespace e sm63_serviceName
         //28052018
+		//260919 inserita la versione nel metodo createMqEndpointXMLDAta prima il nome del ep MQ conteneva sempre versione 00
         /**
          * 	gep63_SCHOST_PATTERN_INTERAZIONE           
 			gep63_SCHOST_AMBITO_IMPLEMENTAZIONE		
@@ -2739,7 +2740,8 @@ public class WSDLLoaderBPM {
 	    return output;
 	}
 	//040117 all'enpoint viene passato il campo sicurezza inserito nella proprieta' : sm63_USO_SICUREZZA
-	public String createMqEndpointXMLDAta(String name,String qname,int messLen,String environment,String state,String bsrURIMqManualendpoint,String sicurezza) {
+	//260919 inserita anche la versione era un baco non passarla
+	public String createMqEndpointXMLDAta(String name,String qname,int messLen,String environment,String state,String bsrURIMqManualendpoint,String sicurezza,String version) {
 		
 	    String output=null;
 	
@@ -2773,7 +2775,9 @@ public class WSDLLoaderBPM {
 	        Element propertiesElement = document.createElement(ELEMENT_PROPERTIES);
 	        resourceElement.appendChild(propertiesElement);
 	        	
-	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAME, name+"_00_MQ_E"));
+	        //propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAME, name+"_00_MQ_E"));
+	        propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAME, name+"_"+version+"_MQ_E"));//260919 inserita anche la versione era un baco non passarla
+	        
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.NAMESPACE, EMPTY_STRING));
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.VERSION,EMPTY_STRING));
             propertiesElement.appendChild(createPropertyElement(document, PropertyConstants.DESCRIPTION,EMPTY_STRING));
