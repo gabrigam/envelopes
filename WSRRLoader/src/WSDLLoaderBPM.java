@@ -91,6 +91,7 @@ public class WSDLLoaderBPM {
 	    //050418 createCallableEndpoint passati due nuovi parametri per settare sm63_serviceNamespace e sm63_serviceName
         //28052018
 		//260919 inserita la versione nel metodo createMqEndpointXMLDAta prima il nome del ep MQ conteneva sempre versione 00
+		//181119 se sottotipo SAHOST imposto gep63_SHOST_PATTERN_INTERAZIONE,SHOST_VOLUME_GIORN e SHOST_REPS0
         /**
          * 	gep63_SCHOST_PATTERN_INTERAZIONE           
 			gep63_SCHOST_AMBITO_IMPLEMENTAZIONE		
@@ -1256,6 +1257,7 @@ public class WSDLLoaderBPM {
         return output;
     }
     //281117 aggiungo alla fine dei parametri anche la versione.
+    //181119 se sottotipo SAHOST imposto gep63_SHOST_PATTERN_INTERAZIONE,SHOST_VOLUME_GIORN e SHOST_REPS0
     public  String createServiceSHOSTServiceVersionXMLDAta( TWList data,String sdlBsrUri,String organizationBsrUri,String matricola,String version) {
  
     	
@@ -1372,6 +1374,20 @@ public class WSDLLoaderBPM {
             propertiesElement.appendChild(createPropertyElement(document, "gep63_CAT_SERVIZIO", (String)data.getArrayData(37)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_CAT_INPUT", (String)data.getArrayData(38)));
             propertiesElement.appendChild(createPropertyElement(document, "gep63_CAT_OUTPUT", (String)data.getArrayData(39)));
+            
+            //181119 se sottotipo SAHOST imposto gep63_SHOST_PATTERN_INTERAZIONE,SHOST_VOLUME_GIORN e SHOST_REPS0
+            
+            if(type !=null && type.equals("SAHOST")) {
+                propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_PATTERN_INTERAZIONE", (String)data.getArrayData(40)));
+                propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_VOLUME_GIORN", (String)data.getArrayData(41)));
+                propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_REPS0", (String)data.getArrayData(42)));
+            	
+            } else {
+                propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_PATTERN_INTERAZIONE", ""));
+                propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_VOLUME_GIORN", ""));
+                propertiesElement.appendChild(createPropertyElement(document, "gep63_SHOST_REPS0", ""));          	
+            }
+            
             
             //costruisco il primary type dell'oggetto
             
